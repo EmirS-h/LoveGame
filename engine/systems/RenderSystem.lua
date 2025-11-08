@@ -9,7 +9,7 @@ function RenderSystem.draw(entity)
         end
 
         love.graphics.rectangle("fill", entity.Position.x, entity.Position.y, entity.Collider.width,
-        entity.Collider.height)
+            entity.Collider.height)
     end
 end
 

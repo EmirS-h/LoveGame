@@ -1,6 +1,6 @@
 local CollisionSystem = {}
 
-function CollisionSystem.checkOverlap(entityA, entityB)
+function CollisionSystem:checkOverlap(entityA, entityB)
     local pA, cA = entityA.Position, entityA.Collider
     local pB, cB = entityB.Position, entityB.Collider
 
