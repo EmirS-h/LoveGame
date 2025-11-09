@@ -6,6 +6,7 @@ function Scene.new(name)
         name = name or "Unnamed Scene",
         gameObjects = {},
         uiElements = {},
+        paused = false,
     }
     return setmetatable(instance, Scene)
 end
@@ -19,6 +20,9 @@ function Scene:addUIElement(uiElement)
 end
 
 function Scene:update(dt)
+    if self.paused then
+        return
+    end
     for _, gameObject in ipairs(self.gameObjects) do
         if gameObject.update then
             gameObject:update(dt)
