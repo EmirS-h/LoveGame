@@ -11,6 +11,15 @@ function Scene.new(name)
     return setmetatable(instance, Scene)
 end
 
+function Scene:load()
+
+end
+
+function Scene:unload()
+    self.gameObjects = nil
+    self.uiElements = nil
+end
+
 function Scene:addGameObject(gameObject)
     table.insert(self.gameObjects, gameObject)
 end
@@ -60,6 +69,22 @@ function Scene:onMouseReleased(x, y, button, istouch)
     for _, uiElement in ipairs(self.uiElements) do
         if uiElement.onMouseReleased then
             uiElement:onMouseReleased(x, y, button, istouch)
+        end
+    end
+end
+
+function Scene:onKeyPressed(key)
+    for _, uiElement in ipairs(self.uiElements) do
+        if uiElement.onKeyPressed then
+            uiElement:onKeyPressed(key)
+        end
+    end
+end
+
+function Scene:onKeyReleased(key)
+    for _, uiElement in ipairs(self.uiElements) do
+        if uiElement.onKeyReleased then
+            uiElement:onKeyReleased(key)
         end
     end
 end

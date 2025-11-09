@@ -2,16 +2,20 @@ local Button = {}
 
 Button.__index = Button
 
-function Button.new(x, y, text, onPressed)
+function Button.new(x, y, text, onPressed, onReleased, onMouseEnter, onMouseLeave)
     local instance = {
         text = text or "Button",
         x = x or 0,
         y = y or 0,
         width = 100,
         height = 50,
-        onPressed = onPressed or function() print("Button has no onClickHandler") end,
+        borderRadius = 4,
         isBeingHovered = false,
         isBeingHeldDown = false,
+        onPressed = onPressed or function() print(text .. " has no onPressedHandler") end,
+        onReleased = onReleased or function() print(text .. " has no onReleasedHandler") end,
+        onMouseEnter = onMouseEnter or function() print(text .. " has no onMouseOverHandler") end,
+        onMouseLeave = onMouseLeave or function() print(text .. " has no onMouseLeaveHandler") end,
     }
     return setmetatable(instance, Button)
 end
@@ -27,7 +31,7 @@ function Button:draw()
     end
 
     -- 2. Draw the button
-    love.graphics.rectangle("line", self.x, self.y, self.width, self.height, 4)
+    love.graphics.rectangle("line", self.x, self.y, self.width, self.height, self.borderRadius)
     love.graphics.printf(self.text, self.x, self.y + (self.height / 2) - 10, self.width, "center")
 
     -- 3. Reset the color to white so we don't affect
@@ -36,10 +40,30 @@ function Button:draw()
 end
 
 function Button:update(dt)
-    if self:isHovered(love.mouse.getX(), love.mouse.getY()) then
-        self.isBeingHovered = true
+    -- 1. Check the mouse's current hover status
+    local isHovered = self:isHovered(love.mouse.getX(), love.mouse.getY())
+
+    -- 2. Compare current status to the stored state
+    if isHovered then
+        -- Mouse is currently over the button
+        if self.isBeingHovered == false then
+            -- It *just entered* this frame
+            self.onMouseEnter()
+            self.isBeingHovered = true
+        end
+        -- (If isHovered is true and was already true, do nothing)
     else
-        self.isBeingHovered = false
+        -- Mouse is NOT currently over the button
+        if self.isBeingHovered == true then
+            -- It *just left* this frame
+            self.onMouseLeave()
+            self.isBeingHovered = false
+        end
+        -- (If isHovered is false and was already false, do nothing) section.
+        -- Also, if the mouse leaves while being held down, reset the held state
+        if self.isBeingHeldDown then
+            self.isBeingHeldDown = false
+        end
     end
 end
 
@@ -58,9 +82,19 @@ end
 
 function Button:onMouseReleased(x, y, button, istouch)
     if button == 1 and self.isBeingHeldDown then
+        if self.isBeingHovered then
+            self.onReleased()
+        end
         self.isBeingHeldDown = false
-        print("Mouse button released on button")
     end
+end
+
+function Button:onKeyPressed(key)
+
+end
+
+function Button:onKeyReleased(key)
+
 end
 
 return Button
