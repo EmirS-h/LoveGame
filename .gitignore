@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # --- Compiled Lua files ---
 *.luac
 *.out
@@ -32,3 +33,6 @@ lib/   # Local libraries
 # --- Logs and temporary files ---
 *.log
 *.tmp
+=======
+.vscode
+>>>>>>> 523166d36de5e268192fe75819a34e8131c1222d
