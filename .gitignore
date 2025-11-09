@@ -1,1 +1,38 @@
+<<<<<<< HEAD
+# --- Compiled Lua files ---
+*.luac
+*.out
+
+# --- LuaRocks (Lua package manager) ---
+/lua_modules/
+*.rock
+*.rockspec
+
+# --- IDE/Editor files ---
+# VS Code
+.vscode/
+*.code-workspace
+
+# IntelliJ/CLion
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+*.un~
+
+# --- OS-generated files ---
+.DS_Store
+Thumbs.db
+
+# --- Dependency directories ---
+deps/  # If using C modules (e.g., LuaJIT FFI)
+lib/   # Local libraries
+
+# --- Logs and temporary files ---
+*.log
+*.tmp
+=======
 .vscode
+>>>>>>> 523166d36de5e268192fe75819a34e8131c1222d
