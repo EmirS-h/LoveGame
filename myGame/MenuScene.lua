@@ -27,10 +27,10 @@ function MainMenuScene:load()
     print("Main Menu Scene Loaded")
 
     -- Create a "Start Game" button
-    local startButton = Button.new(300, 200, "Start Game")
+    local startButton = Button.new(200, 200, "Start Game")
 
     -- Create a "Quit" button
-    local quitButton = Button.new(300, 300, "Quit Game")
+    local quitButton = Button.new(200, 300, "Quit Game")
 
     -- Add the buttons to this scene's uiElements list
     self:addUIElement(startButton)
