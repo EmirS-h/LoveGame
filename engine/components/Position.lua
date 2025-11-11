@@ -1,10 +1,12 @@
 local Position = {}
 
 function Position.new(x, y)
-    return {
-        x = x or 0,
-        y = y or 0
-    }
+    local comp = setmetatable({},Position)
+    comp.name = "Position"
+    comp.gameObject = nil
+    comp.x = x or 0
+    comp.y y or 0
+
 end
 
 return Position
