@@ -3,7 +3,7 @@ ScreenBounce.__index = ScreenBounce
 
 function ScreenBounce:new(vx, vy)
     local comp = setmetatable({}, ScreenBounce)
-    comp.name = "screenBounce"
+    comp.name = "ScreenBounce"
     comp.gameObject = nil
     
     -- Velocity X and Y
@@ -20,7 +20,7 @@ function ScreenBounce:update(dt)
 
     -- Try to get the shape to know our width/height
     -- If no shape exists, we assume size is 0 (a single point)
-    local shape = self.gameObject:get("shape")
+    local shape = self.gameObject:get("Shape")
     local halfWidth = shape and (shape.width / 2) or 0
     local halfHeight = shape and (shape.height / 2) or 0
 

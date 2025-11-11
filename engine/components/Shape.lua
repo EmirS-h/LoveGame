@@ -11,7 +11,7 @@ Shape.__index = Shape
 function Shape:new(shapeType, width, height, color)
     local comp = setmetatable({}, Shape)
     
-    comp.name = "shape"
+    comp.name = "Shape"
     comp.gameObject = nil
     
     comp.shapeType = shapeType or "rectangle"
