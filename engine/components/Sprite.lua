@@ -3,7 +3,7 @@ Sprite.__index = Sprite
 
 function Sprite:new(image)
     local comp = setmetatable({}, Sprite)
-    comp.name = "Speit"
+    comp.name = "Sprite"
     comp.image = image
     comp.gameObject = nil
     
