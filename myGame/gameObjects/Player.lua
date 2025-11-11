@@ -10,7 +10,6 @@ function Player:new()
     go:add(Transform:new(50,50))
     go:add(Shape:new())
     
-
     return go
 end
 

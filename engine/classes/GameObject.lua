@@ -16,7 +16,7 @@ end
 -- This function is a helper to quickly get the transform,
 -- since almost EVERY component will need it.
 function GameObject:transform()
-    return self.components.transform
+    return self.components["Transform"]
 end
 
 -- The rest of your functions (add, get, remove, update, draw)
