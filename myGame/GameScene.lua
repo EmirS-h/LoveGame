@@ -8,3 +8,10 @@ function GameScene.new()
     setmetatable(instance,Scene)
     return instance
 end
+
+function GameScene:load()
+    print("Loaded GameScene")
+
+    
+end
+
