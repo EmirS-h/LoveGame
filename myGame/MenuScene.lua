@@ -1,4 +1,5 @@
 -- We need to load the base Scene class to "inherit" from it
+local SceneManager = require("engine.managers.SceneManager")
 local Scene = require('engine.classes.Scene')
 -- We need to load our Button class to create UI
 local Button = require('engine.ui.Button')
@@ -27,7 +28,7 @@ function MainMenuScene:load()
     print("Main Menu Scene Loaded")
 
     -- Create a "Start Game" button
-    local startButton = Button.new(150, 200, "Start Game")
+    local startButton = Button.new(150, 200, "Start Game",function() SceneManager.changeScene("GameScene"))
 
     -- Create a "Quit" button
     local quitButton = Button.new(150, 300, "Quit Game")
