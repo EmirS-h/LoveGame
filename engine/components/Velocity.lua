@@ -6,6 +6,9 @@ function Velocity:new(vx, vy)
     comp.name = "Velocity"
     comp.gameObject = nil
 
-    comp.velocityX 
+    comp.velocityX = vx or 0
+    comp.velocityY = vy or 0
+
+   return comp
 
 return Velocity
