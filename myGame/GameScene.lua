@@ -1,4 +1,5 @@
 local Scene = require("engine.classes.Scene")
+local Player = require
 
 local GameScene = {}
 GameScene.__index = GameScene
