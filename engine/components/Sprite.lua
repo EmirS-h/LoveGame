@@ -1,20 +1,33 @@
 local Sprite = {}
 Sprite.__index = Sprite
 
-function Sprite.new(imagePath, x, y)
-    local image = love.graphics.newImage(imagePath)
-    local instance = {
-        image = image,
-        x = x or 0,
-        y = y or 0,
-        width = image:getWidth(),
-        height = image:getHeight(),
-    }
-    return setmetatable(instance, Sprite)
+function Sprite:new(image)
+    local comp = setmetatable({}, Sprite)
+    comp.name = "Speit"
+    comp.image = image
+    comp.gameObject = nil
+    
+    -- We can get width/height from the image
+    comp.width = image:getWidth()
+    comp.height = image:getHeight()
+
+    return comp
 end
 
 function Sprite:draw()
-    love.graphics.draw(self.image, self.x, self.y)
+    if not self.image then return end
+
+    -- Get the transform data from the GameObject
+    local t = self.gameObject:transform()
+    
+    love.graphics.draw(
+        self.image, 
+        t.x, -- Get X from the transform component
+        t.y, -- Get Y from the transform component
+        t.angle,
+        t.scaleX,
+        t.scaleY
+    )
 end
 
 return Sprite

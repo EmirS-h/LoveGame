@@ -6,7 +6,7 @@ function Scale.new(sx, sy)
     comp.name = "Scale"
     comp.gameObject = nil
     comp.scaleX = sx or 1
-    comp.scaleY sy or 1
+    comp.scaleY = sy or 1
     return comp
 end
 

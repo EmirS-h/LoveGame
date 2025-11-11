@@ -6,7 +6,7 @@ function Position:new(x, y)
     comp.name = "Position"
     comp.gameObject = nil
     comp.x = x or 0
-    comp.y y or 0
+    comp.y = y or 0
     return comp
 end
 
