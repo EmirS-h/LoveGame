@@ -14,7 +14,7 @@ function love.load()
     -- 1. Add your scene *classes* to the manager
     -- (Notice we don't call .new() here)
     SceneManager.addScene('MainMenu', require('myGame.MenuScene'))
-SceneManager.addScene('Game', require('myGame.GameScene'))
+SceneManager.addScene('GameScene', require('myGame.GameScene'))
     -- SceneManager.addScene('Game', require('GameScene')) -- (You'll create this file)
     -- SceneManager.addScene('Options', require('OptionsScene')) -- (And this one, etc.)
 
