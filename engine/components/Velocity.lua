@@ -1,10 +1,11 @@
 local Velocity = {}
+Velocity.__index = Velocity
 
-function Velocity.new(vx, vy)
-    return {
-        vx = vx or 0,
-        vy = vy or 0
-    }
-end
+function Velocity:new(vx, vy)
+    local comp = setmetatable({},Velocity)
+    comp.name = "Velocity"
+    comp.gameObject = nil
+
+    comp.velocityX 
 
 return Velocity
