@@ -7,8 +7,9 @@ local Player = {}
 function Player:new()
     local go = GameObject:new()
 
-    go:addComponent(Shape:new())
-    go:addComponent(Transform:new(50,50))
+    go:add(Transform:new(50,50))
+    go:add(Shape:new())
+    
 
     return go
 end
