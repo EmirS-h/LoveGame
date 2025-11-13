@@ -1,7 +1,7 @@
 local Position = {}
 Position.__index = Position
 
-function Position:new(x, y)
+function Position:__call(x, y)
     local comp = setmetatable({}, Position)
 
     comp.name = "Position"

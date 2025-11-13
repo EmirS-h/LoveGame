@@ -1,7 +1,13 @@
+Shove = require("engine.libs.shove")
 InputManager = require("engine.managers.InputManager")
 SceneManager = require("engine.managers.SceneManager")
 
 function love.load()
+    -- Initialize Shöve with fixed game resolution and options
+    Shove.setResolution(800, 600, { fitMethod = "aspect", scalingFilter = "nearest" })
+    -- Set up a resizable window
+    Shove.setWindowMode(800, 600, { resizable = true })
+
     -- Setup your input bindings
     InputManager.bindAction('ui_confirm', { 'return', 1 })
     InputManager.bindAction('move_left', { 'a', 'left' })
@@ -20,7 +26,9 @@ function love.update(dt)
 end
 
 function love.draw()
+    Shove.beginDraw()
     SceneManager.draw()
+    Shove.endDraw()
 end
 
 function love.keypressed(key)
@@ -42,7 +50,3 @@ function love.mousereleased(x, y, button, istouch)
     InputManager.handleMousereleased(x, y, button, istouch)
     SceneManager.onMouseReleased(x, y, button, istouch)
 end
-
--- function love.mousemoved(x, y, dx, dy)
---     InputManager.handleMousemoved(x, y, dx, dy)
--- end

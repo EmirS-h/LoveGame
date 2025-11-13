@@ -12,7 +12,6 @@ function Scene.new(name)
 end
 
 function Scene:load()
-
 end
 
 function Scene:unload()

@@ -40,8 +40,9 @@ function Button:draw()
 end
 
 function Button:update(dt)
+    local mouseInViewport, mx, my = Shove.mouseToViewport()
     -- 1. Check the mouse's current hover status
-    local isHovered = self:isHovered(love.mouse.getX(), love.mouse.getY())
+    local isHovered = self:isHovered(mx, my)
 
     -- 2. Compare current status to the stored state
     if isHovered then

@@ -3,10 +3,10 @@ ScreenBounce.__index = ScreenBounce
 
 function ScreenBounce:new(vx, vy)
     local comp = setmetatable({}, ScreenBounce)
+
     comp.name = "ScreenBounce"
     comp.gameObject = nil
-    
-    -- Velocity X and Y
+
     comp.vx = vx or 200
     comp.vy = vy or 200
 
@@ -20,7 +20,7 @@ function ScreenBounce:update(dt)
 
     -- Try to get the shape to know our width/height
     -- If no shape exists, we assume size is 0 (a single point)
-    local shape = self.gameObject:get("Shape")
+    local shape = self.gameObject:getComponent("Shape")
     local halfWidth = shape and (shape.width / 2) or 0
     local halfHeight = shape and (shape.height / 2) or 0
 
@@ -29,12 +29,13 @@ function ScreenBounce:update(dt)
     t.y = t.y + self.vy * dt
 
     -- 3. Check Screen Boundaries
-    local screenW = love.graphics.getWidth()
-    local screenH = love.graphics.getHeight()
+    local sw, sh = Shove.getViewportDimensions()
+    local screenW = sw
+    local screenH = sh
 
     -- Bounce off Left Wall
     if t.x - halfWidth < 0 then
-        t.x = halfWidth -- Snap back inside
+        t.x = halfWidth    -- Snap back inside
         self.vx = -self.vx -- Reverse direction
     end
 
