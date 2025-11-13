@@ -3,11 +3,11 @@ Sprite.__index = Sprite
 
 function Sprite:new(image)
     local comp = setmetatable({}, Sprite)
+
     comp.name = "Sprite"
-    comp.image = image
     comp.gameObject = nil
-    
-    -- We can get width/height from the image
+
+    comp.image = image
     comp.width = image:getWidth()
     comp.height = image:getHeight()
 
@@ -19,9 +19,9 @@ function Sprite:draw()
 
     -- Get the transform data from the GameObject
     local t = self.gameObject:transform()
-    
+
     love.graphics.draw(
-        self.image, 
+        self.image,
         t.x, -- Get X from the transform component
         t.y, -- Get Y from the transform component
         t.angle,

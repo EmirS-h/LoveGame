@@ -28,7 +28,7 @@ function MainMenuScene:load()
     print("Main Menu Scene Loaded")
 
     -- Create a "Start Game" button
-    local startButton = Button.new(150, 200, "Start Game",function() SceneManager.changeScene("GameScene")end)
+    local startButton = Button.new(150, 200, "Start Game", function() SceneManager.changeScene("GameScene") end)
 
     -- Create a "Quit" button
     local quitButton = Button.new(150, 300, "Quit Game")

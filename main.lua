@@ -1,34 +1,21 @@
-local InputManager = require("engine.managers.InputManager")
-local SceneManager = require("engine.managers.SceneManager")
+InputManager = require("engine.managers.InputManager")
+SceneManager = require("engine.managers.SceneManager")
 
 function love.load()
-    -- Make the managers global so all scenes can access them
-    -- This is the simplest way to let your menu buttons
-    -- call SceneManager.changeScene()
-
     -- Setup your input bindings
     InputManager.bindAction('ui_confirm', { 'return', 1 })
     InputManager.bindAction('move_left', { 'a', 'left' })
     InputManager.bindAction('move_right', { 'd', 'right' })
 
-    -- 1. Add your scene *classes* to the manager
-    -- (Notice we don't call .new() here)
     SceneManager.addScene('MainMenu', require('myGame.MenuScene'))
-SceneManager.addScene('GameScene', require('myGame.GameScene'))
-    -- SceneManager.addScene('Game', require('GameScene')) -- (You'll create this file)
-    -- SceneManager.addScene('Options', require('OptionsScene')) -- (And this one, etc.)
+    SceneManager.addScene('GameScene', require('myGame.GameScene'))
 
-    -- 2. Start the game by changing to the first scene
     SceneManager.changeScene('MainMenu')
 end
 
--- All the functions below just delegate to the managers
-
 function love.update(dt)
-    -- Always update InputManager first
     InputManager.update()
 
-    -- Then update the current scene
     SceneManager.update(dt)
 end
 
@@ -58,6 +45,4 @@ end
 
 -- function love.mousemoved(x, y, dx, dy)
 --     InputManager.handleMousemoved(x, y, dx, dy)
---     -- Note: We didn't add onMouseMoved to our SceneManager,
---     -- but you could if your UI needs hover-move events.
 -- end

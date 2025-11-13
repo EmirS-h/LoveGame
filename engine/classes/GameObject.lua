@@ -5,7 +5,7 @@ GameObject.__index = GameObject
 -- NOTICE: x, y, width, and height are GONE
 function GameObject:new()
     local obj = setmetatable({}, GameObject)
-    
+
     obj.active = true
     obj.visible = true
     obj.components = {}
