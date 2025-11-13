@@ -3,15 +3,12 @@ InputManager = require("engine.managers.InputManager")
 SceneManager = require("engine.managers.SceneManager")
 
 function love.load()
-    -- Initialize Shöve with fixed game resolution and options
-    Shove.setResolution(800, 600, { fitMethod = "aspect", scalingFilter = "nearest" })
-    -- Set up a resizable window
-    Shove.setWindowMode(800, 600, { resizable = true })
+    Shove.setResolution(640, 360, { fitMethod = "pixel", scalingFilter = "nearest", renderMode = "layer" })
+    Shove.setWindowMode(1280, 720, { resizable = true })
 
-    -- Setup your input bindings
-    InputManager.bindAction('ui_confirm', { 'return', 1 })
-    InputManager.bindAction('move_left', { 'a', 'left' })
-    InputManager.bindAction('move_right', { 'd', 'right' })
+    Shove.createLayer("baseLayer")
+
+    InputManager.bindAction('close_game', { 'escape' })
 
     SceneManager.addScene('MainMenu', require('myGame.MenuScene'))
     SceneManager.addScene('GameScene', require('myGame.GameScene'))
@@ -20,33 +17,39 @@ function love.load()
 end
 
 function love.update(dt)
-    InputManager.update()
-
     SceneManager.update(dt)
+
+    if InputManager.isActionPressed('close_game') then
+        love.event.quit()
+    end
+
+    InputManager.update()
 end
 
 function love.draw()
     Shove.beginDraw()
+    Shove.beginLayer("baseLayer")
     SceneManager.draw()
+    Shove.endLayer()
     Shove.endDraw()
 end
 
 function love.keypressed(key)
-    InputManager.handleKeypressed(key)
     SceneManager.onKeyPressed(key)
+    InputManager.handleKeypressed(key)
 end
 
 function love.keyreleased(key)
-    InputManager.handleKeyreleased(key)
     SceneManager.onKeyReleased(key)
+    InputManager.handleKeyreleased(key)
 end
 
 function love.mousepressed(x, y, button, istouch)
-    InputManager.handleMousepressed(x, y, button, istouch)
     SceneManager.onMousePressed(x, y, button, istouch)
+    InputManager.handleMousepressed(x, y, button, istouch)
 end
 
 function love.mousereleased(x, y, button, istouch)
-    InputManager.handleMousereleased(x, y, button, istouch)
     SceneManager.onMouseReleased(x, y, button, istouch)
+    InputManager.handleMousereleased(x, y, button, istouch)
 end

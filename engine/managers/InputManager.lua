@@ -3,7 +3,7 @@ local InputManager = {
     mouseStates = {},
     previousKeyboardStates = {},
     previousMouseStates = {},
-    mouseTouchStates = {}, -- This line is new
+    mouseTouchStates = {},
     mousePosition = { x = 0, y = 0 },
     mouseDelta = { x = 0, y = 0 },
     bindings = {},
@@ -19,7 +19,7 @@ local KEY_STATES = {
 }
 
 function InputManager.update()
-    InputManager.consumedActions = {} -- Reset consumed actions each frame
+    InputManager.consumedActions = {}
 
     -- Update previous states
     InputManager.previousKeyboardStates = {}
@@ -46,7 +46,7 @@ function InputManager.update()
             InputManager.mouseStates[button] = KEY_STATES.HELD
         elseif state == KEY_STATES.RELEASED then
             InputManager.mouseStates[button] = KEY_STATES.NONE
-            InputManager.mouseTouchStates[button] = nil -- This line is new
+            InputManager.mouseTouchStates[button] = nil
         end
     end
 end
@@ -60,7 +60,6 @@ function InputManager.consumeAction(actionName)
     InputManager.consumedActions[actionName] = true
 end
 
--- Action check methods (No changes here)
 function InputManager.isActionPressed(actionName)
     if InputManager.consumedActions[actionName] then
         return false
